@@ -49,8 +49,15 @@ pipeline {
                 sh ('mvn install');
             }
         }
-        
-       
-        
+            
+        stage('deploy') {
+            steps {
+                sshagent(['deploy_user']) {
+                   sh "scp -o StrictHostKeyChecking=no -T target/**.war target/01-maven-web-app.war ubuntu@44.204.245.200:/opt/tomcat/webapps"
+                    
+                        }
+            }
+        }
+          
     }
 }
