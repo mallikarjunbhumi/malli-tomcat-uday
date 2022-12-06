@@ -49,7 +49,6 @@ pipeline {
                 sh ('mvn install');
             }
         }
-            
         stage('deploy') {
             steps {
                 sshagent(['deploy_user']) {
