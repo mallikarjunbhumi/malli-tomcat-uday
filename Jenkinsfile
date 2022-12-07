@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/uday898989/tomcat-jenkin-webh.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/uday898989/tomcat-jenkin-webh.git']]])
             }
         }
         
@@ -49,6 +49,7 @@ pipeline {
                 sh ('mvn install');
             }
         }
+        
         stage('deploy') {
             steps {
                 sshagent(['deploy_user']) {
