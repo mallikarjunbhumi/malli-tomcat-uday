@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/uday898989/tomcat-jenkin-webh.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mallibhumi/tomcat-jenkin-webh.git']]])
             }
         }
         
@@ -53,7 +53,7 @@ pipeline {
         stage('deploy') {
             steps {
                 sshagent(['deploy_user']) {
-                   sh "scp -o StrictHostKeyChecking=no -T target/**.war target/01-maven-web-app.war ubuntu@3.110.143.221:/opt/tomcat/webapps"
+                   sh "scp -o StrictHostKeyChecking=no -T target/**.war target/01-maven-web-app.war ubuntu@3.110.143.221:8080/opt/tomcat/webapps"
                     
                         }
             }
